@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz 1 mês de namoro 💌</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #1a0000, #0b0b0b 85%);
+    overflow: hidden;
+    position: relative;
+    font-family: 'Nosifer', cursive;
+    color: #fff;
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Batman_logo.svg') center/25% no-repeat;
+    opacity: 0.1;
+    filter: brightness(0.6);
+    z-index: 0;
+  }
+
+  .titulo {
+    position: relative;
+    z-index: 2;
+    color: #ff2e2e;
+    text-shadow:
+      0 0 25px rgba(255, 0, 0, 0.6),
+      0 0 40px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    font-size: 3rem;
+    line-height: 1.4;
+    animation: fadeIn 3s ease-in-out forwards, flicker 4s infinite;
+    opacity: 0;
+    top: 45%;
+    transform: translateY(-50%);
+    letter-spacing: 1px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(-50%); }
+  }
+
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.4; }
+  }
+
+  .foto {
+    position: absolute;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+
+  .foto.esquerda {
+    top: 60px;
+    left: 40px;
+    width: 180px;
+    transform: rotate(-12deg);
+  }
+
+  .foto.direita {
+    bottom: 40px;
+    right: 60px;
+    width: 180px;
+    transform: rotate(8deg);
+  }
+
+  .foto:hover {
+    transform: scale(1.05) rotate(0deg);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
+    z-index: 3;
+  }
+
+  /* ===== Homem-Aranha pendurado ===== */
+  .spiderman {
+    position: absolute;
+    width: 70px;     
+    top: 5px;        /* mais próximo do topo */
+    left: 50%;       
+    transform: translateX(-50%) rotate(10deg); 
+    z-index: 3;
+    animation: balancar 3s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  @keyframes balancar {
+    0% { transform: translateX(-50%) rotate(10deg); }
+    50% { transform: translateX(-50%) rotate(-10deg); }
+    100% { transform: translateX(-50%) rotate(10deg); }
+  }
+
+  /* ===== Batman andando ===== */
+  .batman {
+    position: absolute;
+    bottom: 10px;
+    left: -150px;
+    width: 130px;
+    z-index: 3;
+    animation: andarBatman 8s linear infinite;
+  }
+
+  @keyframes andarBatman {
+    0% { left: -150px; transform: scaleX(1); }
+    49% { left: 100vw; transform: scaleX(1); }
+    50% { transform: scaleX(-1); }
+    99% { left: -150px; transform: scaleX(-1); }
+    100% { left: -150px; transform: scaleX(1); }
+  }
+
+  /* ===== Teia ===== */
+  .teia {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 260px;
+    opacity: 0.9;
+    z-index: 1;
+    transform: rotate(-3deg);
+  }
+
+  /* PRIMEIRA FOTO POLAROID - no canto superior direito */
+  .foto.polaroid {
+    top: 20px;
+    right: 280px;
+    width: 110px;
+    z-index: 2;
+    border: 3px solid white;
+    background-color: white;
+    padding: 5px 5px 25px 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    transform: rotate(8deg);
+    animation: flutuar 6s ease-in-out infinite;
+  }
+
+  /* SEGUNDA FOTO POLAROID - REPOSICIONADA: mais para baixo e direita */
+  .foto.polaroid2 {
+    bottom: 100px;  /* Desceu 80px */
+    left: 120px;    /* Moveu para direita 100px */
+    width: 100px;
+    z-index: 2;
+    border: 3px solid white;
+    background-color: white;
+    padding: 5px 5px 25px 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    transform: rotate(-8deg); /* Rotação mais suave */
+    animation: flutuar2 7s ease-in-out infinite;
+  }
+
+  @keyframes flutuar {
+    0%, 100% { transform: rotate(8deg) translateY(0px); }
+    50% { transform: rotate(8deg) translateY(-5px); }
+  }
+
+  @keyframes flutuar2 {
+    0%, 100% { transform: rotate(-8deg) translateY(0px); }
+    50% { transform: rotate(-8deg) translateY(-5px); }
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="titulo">
+    <div>Feliz 1 mês de namoro,</div>
+    <div>Mi Amor ❤️</div>
+  </div>
+
+  <!-- Foto esquerda -->
+  <div class="foto-container">
+    <img src="https://i.postimg.cc/DmPk5V0L/polarizeme-image.png" alt="Foto esquerda" class="foto esquerda">
+    <img src="https://i.postimg.cc/ZR981g2K/imagem-2025-10-19-111454148.png" alt="Homem Aranha" class="spiderman">
+  </div>
+
+  <!-- Foto direita -->
+  <img src="https://i.postimg.cc/CdsTJy5L/polarizeme-image-1.png" alt="Foto direita" class="foto direita">
+
+  <!-- PRIMEIRA FOTO POLAROID - no canto superior direito -->
+  <img src="https://i.postimg.cc/TK26Kn8k/polarizeme-image-3.png" alt="Nossa foto especial" class="foto polaroid">
+
+  <!-- SEGUNDA FOTO POLAROID - REPOSICIONADA: mais para baixo e direita -->
+  <img src="https://i.postimg.cc/SxYRWhBr/polarizeme-image-4.png" alt="Nova foto especial" class="foto polaroid2">
+
+  <!-- Batman andando -->
+  <img src="https://i.postimg.cc/MTtn3GP4/giphy.gif" alt="Batman andando" class="batman">
+
+  <!-- Teia -->
+  <img src="https://i.postimg.cc/T1LWy60S/imagem-2025-10-19-111200217-removebg-preview.png" alt="Teia de aranha" class="teia">
+
+</body>
+</html>
