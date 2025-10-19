@@ -9,14 +9,19 @@
 
   body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     background: radial-gradient(circle at top, #1a0000, #0b0b0b 85%);
-    overflow: hidden;
-    position: relative;
     font-family: 'Nosifer', cursive;
     color: #fff;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5vh;
   }
 
+  /* Logo de fundo */
   body::before {
     content: "";
     position: absolute;
@@ -30,26 +35,24 @@
     z-index: 0;
   }
 
+  /* ===== Título ===== */
   .titulo {
-    position: relative;
     z-index: 2;
-    color: #ff2e2e;
-    text-shadow:
-      0 0 25px rgba(255, 0, 0, 0.6),
-      0 0 40px rgba(0, 0, 0, 0.9);
     text-align: center;
-    font-size: 3rem;
+    color: #ff2e2e;
+    text-shadow: 0 0 25px rgba(255,0,0,0.6), 0 0 40px rgba(0,0,0,0.9);
+    font-size: 2.5rem;
     line-height: 1.4;
     animation: fadeIn 3s ease-in-out forwards, flicker 4s infinite;
     opacity: 0;
-    top: 45%;
-    transform: translateY(-50%);
     letter-spacing: 1px;
+    margin-bottom: 5vh;
+    position: relative;
   }
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(-50%); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes flicker {
@@ -57,120 +60,170 @@
     20%, 24%, 55% { opacity: 0.4; }
   }
 
+  /* ===== Container de fotos ===== */
+  .fotos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4vw;
+    z-index: 2;
+    position: relative;
+    margin-top: 2vh;
+  }
+
+  .foto-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
   .foto {
-    position: absolute;
     border: 3px solid #fff;
     border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-    z-index: 2;
-    transition: transform 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: transform 0.5s ease, z-index 0.5s;
+    background-color: #fff;
+    padding: 5px 5px 25px 5px;
+    width: 40vw;
+    max-width: 150px;
+    transform-origin: center;
+    position: relative;
   }
 
-  .foto.esquerda {
-    top: 60px;
-    left: 40px;
-    width: 180px;
-    transform: rotate(-12deg);
+  /* Inclinações variadas e mais pronunciadas para efeito "jogado" */
+  .foto-wrapper:nth-child(1) .foto { 
+    transform: rotate(-15deg) translateX(-5px) translateY(8px); 
   }
-
-  .foto.direita {
-    bottom: 40px;
-    right: 60px;
-    width: 180px;
-    transform: rotate(8deg);
+  .foto-wrapper:nth-child(2) .foto { 
+    transform: rotate(12deg) translateX(8px) translateY(-5px); 
+  }
+  .foto-wrapper:nth-child(3) .foto { 
+    transform: rotate(-8deg) translateX(-10px) translateY(-8px); 
+  }
+  .foto-wrapper:nth-child(4) .foto { 
+    transform: rotate(18deg) translateX(5px) translateY(10px); 
   }
 
   .foto:hover {
-    transform: scale(1.05) rotate(0deg);
-    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
-    z-index: 3;
+    transform: scale(1.1) rotate(0deg) !important;
+    box-shadow: 0 12px 30px rgba(255,255,255,0.3);
+    z-index: 10;
   }
 
-  /* ===== Homem-Aranha pendurado ===== */
+  /* ===== Homem-Aranha pendurado no topo ===== */
   .spiderman {
     position: absolute;
-    width: 70px;     
-    top: 5px;        /* mais próximo do topo */
-    left: 50%;       
-    transform: translateX(-50%) rotate(10deg); 
+    width: 12vw;
+    max-width: 70px;
+    top: 0;            
+    left: 5vw;         
+    transform: rotate(0deg);
     z-index: 3;
+    pointer-events: none; 
     animation: balancar 3s ease-in-out infinite;
-    transform-origin: top center;
+    transform-origin: top center; 
   }
 
   @keyframes balancar {
-    0% { transform: translateX(-50%) rotate(10deg); }
-    50% { transform: translateX(-50%) rotate(-10deg); }
-    100% { transform: translateX(-50%) rotate(10deg); }
+    0% { transform: rotate(10deg); }
+    50% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
   }
 
-  /* ===== Batman andando ===== */
+  /* ===== Batman ===== */
   .batman {
-    position: absolute;
-    bottom: 10px;
-    left: -150px;
-    width: 130px;
+    position: fixed;
+    bottom: 1vh;
+    width: 25vw;
+    max-width: 120px;
     z-index: 3;
     animation: andarBatman 8s linear infinite;
   }
 
   @keyframes andarBatman {
-    0% { left: -150px; transform: scaleX(1); }
+    0% { left: -20vw; transform: scaleX(1); }
     49% { left: 100vw; transform: scaleX(1); }
     50% { transform: scaleX(-1); }
-    99% { left: -150px; transform: scaleX(-1); }
-    100% { left: -150px; transform: scaleX(1); }
+    99% { left: -20vw; transform: scaleX(-1); }
+    100% { left: -20vw; transform: scaleX(1); }
   }
 
-  /* ===== Teia ===== */
+  /* ===== Teia aumentada atrás de tudo ===== */
   .teia {
     position: absolute;
     top: 0;
     right: 0;
-    width: 260px;
-    opacity: 0.9;
-    z-index: 1;
+    width: 60vw;         /* aumentei a largura */
+    height: auto;
+    opacity: 0.7;
+    z-index: 0;           /* atrás de tudo */
     transform: rotate(-3deg);
   }
 
-  /* PRIMEIRA FOTO POLAROID - no canto superior direito */
-  .foto.polaroid {
-    top: 20px;
-    right: 280px;
-    width: 110px;
-    z-index: 2;
-    border: 3px solid white;
-    background-color: white;
-    padding: 5px 5px 25px 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-    transform: rotate(8deg);
-    animation: flutuar 6s ease-in-out infinite;
+  /* ===== Morcegos no fundo ===== */
+  .morcego-fundo {
+    position: absolute;
+    width: 40px;
+    height: auto;
+    z-index: 1;
+    opacity: 0.7;
+    pointer-events: none;
   }
 
-  /* SEGUNDA FOTO POLAROID - REPOSICIONADA: mais para baixo e direita */
-  .foto.polaroid2 {
-    bottom: 100px;  /* Desceu 80px */
-    left: 120px;    /* Moveu para direita 100px */
-    width: 100px;
-    z-index: 2;
-    border: 3px solid white;
-    background-color: white;
-    padding: 5px 5px 25px 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-    transform: rotate(-8deg); /* Rotação mais suave */
-    animation: flutuar2 7s ease-in-out infinite;
+  /* ===== Morcegos ao redor do título ===== */
+  .morcego-titulo {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    z-index: 3;
+    opacity: 0.8;
+    animation: voarTitulo 4s ease-in-out infinite;
   }
 
-  @keyframes flutuar {
-    0%, 100% { transform: rotate(8deg) translateY(0px); }
-    50% { transform: rotate(8deg) translateY(-5px); }
+  .morcego-titulo:nth-child(1) {
+    top: -30px;
+    left: 10%;
+    animation-delay: 0s;
   }
 
-  @keyframes flutuar2 {
-    0%, 100% { transform: rotate(-8deg) translateY(0px); }
-    50% { transform: rotate(-8deg) translateY(-5px); }
+  .morcego-titulo:nth-child(2) {
+    top: -20px;
+    right: 15%;
+    animation-delay: 1s;
   }
 
+  .morcego-titulo:nth-child(3) {
+    bottom: -30px;
+    left: 20%;
+    animation-delay: 2s;
+  }
+
+  .morcego-titulo:nth-child(4) {
+    bottom: -25px;
+    right: 10%;
+    animation-delay: 3s;
+  }
+
+  @keyframes voarTitulo {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+  }
+
+  /* ===== Morcegos ao redor das fotos ===== */
+  .morcego-foto {
+    position: absolute;
+    width: 35px;
+    height: auto;
+    z-index: 3;
+    opacity: 0.8;
+    animation: voarFoto 5s ease-in-out infinite;
+  }
+
+  @keyframes voarFoto {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(5px, -5px) rotate(2deg); }
+    50% { transform: translate(-5px, 5px) rotate(-2deg); }
+    75% { transform: translate(3px, 3px) rotate(1deg); }
+  }
 </style>
 </head>
 <body>
@@ -178,28 +231,118 @@
   <div class="titulo">
     <div>Feliz 1 mês de namoro,</div>
     <div>Mi Amor ❤️</div>
+    
+    <!-- Morcegos ao redor do título -->
+    <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-titulo">
+    <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-titulo">
+    <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-titulo">
+    <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-titulo">
   </div>
 
-  <!-- Foto esquerda -->
-  <div class="foto-container">
-    <img src="https://i.postimg.cc/DmPk5V0L/polarizeme-image.png" alt="Foto esquerda" class="foto esquerda">
-    <img src="https://i.postimg.cc/ZR981g2K/imagem-2025-10-19-111454148.png" alt="Homem Aranha" class="spiderman">
+  <img src="https://i.postimg.cc/ZR981g2K/imagem-2025-10-19-111454148.png" alt="Homem Aranha" class="spiderman">
+
+  <div class="fotos-container">
+    <div class="foto-wrapper">
+      <img src="https://i.postimg.cc/DmPk5V0L/polarizeme-image.png" alt="Foto 1" class="foto">
+      <!-- Morcegos ao redor da foto 1 -->
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="top: -15px; left: -20px;">
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="bottom: -15px; right: -20px;">
+    </div>
+    
+    <div class="foto-wrapper">
+      <img src="https://i.postimg.cc/TK26Kn8k/polarizeme-image-3.png" alt="Foto 2" class="foto">
+      <!-- Morcegos ao redor da foto 2 -->
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="top: -15px; right: -20px;">
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="bottom: -15px; left: -20px;">
+    </div>
+    
+    <div class="foto-wrapper">
+      <img src="https://i.postimg.cc/SxYRWhBr/polarizeme-image-4.png" alt="Foto 3" class="foto">
+      <!-- Morcegos ao redor da foto 3 -->
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="top: -10px; left: -15px;">
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="bottom: -10px; right: -15px;">
+    </div>
+    
+    <div class="foto-wrapper">
+      <img src="https://i.postimg.cc/CdsTJy5L/polarizeme-image-1.png" alt="Foto 4" class="foto">
+      <!-- Morcegos ao redor da foto 4 -->
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="top: -10px; right: -15px;">
+      <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-foto" style="bottom: -10px; left: -15px;">
+    </div>
   </div>
 
-  <!-- Foto direita -->
-  <img src="https://i.postimg.cc/CdsTJy5L/polarizeme-image-1.png" alt="Foto direita" class="foto direita">
-
-  <!-- PRIMEIRA FOTO POLAROID - no canto superior direito -->
-  <img src="https://i.postimg.cc/TK26Kn8k/polarizeme-image-3.png" alt="Nossa foto especial" class="foto polaroid">
-
-  <!-- SEGUNDA FOTO POLAROID - REPOSICIONADA: mais para baixo e direita -->
-  <img src="https://i.postimg.cc/SxYRWhBr/polarizeme-image-4.png" alt="Nova foto especial" class="foto polaroid2">
-
-  <!-- Batman andando -->
   <img src="https://i.postimg.cc/MTtn3GP4/giphy.gif" alt="Batman andando" class="batman">
 
-  <!-- Teia -->
   <img src="https://i.postimg.cc/T1LWy60S/imagem-2025-10-19-111200217-removebg-preview.png" alt="Teia de aranha" class="teia">
+
+  <!-- Morcegos voando no fundo -->
+  <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-fundo" style="top: 20%; left: 10%; width: 30px;">
+  <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-fundo" style="top: 60%; left: 5%; width: 25px;">
+  <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-fundo" style="top: 40%; right: 8%; width: 35px;">
+  <img src="https://i.postimg.cc/yYC2hJfS/morcegos.gif" alt="Morcego" class="morcego-fundo" style="top: 80%; right: 15%; width: 28px;">
+
+  <script>
+    // Função para criar morcegos voando aleatoriamente no fundo
+    function criarMorcegosFundo() {
+      const body = document.body;
+      const numMorcegos = 6; // Número de morcegos no fundo
+      
+      for (let i = 0; i < numMorcegos; i++) {
+        const morcego = document.createElement('img');
+        morcego.src = 'https://i.postimg.cc/yYC2hJfS/morcegos.gif';
+        morcego.alt = 'Morcego';
+        morcego.className = 'morcego-fundo';
+        
+        // Posição aleatória
+        const top = Math.random() * 90; // 0% a 90%
+        const left = Math.random() * 90; // 0% a 90%
+        const size = 20 + Math.random() * 20; // 20px a 40px
+        
+        morcego.style.top = `${top}%`;
+        morcego.style.left = `${left}%`;
+        morcego.style.width = `${size}px`;
+        
+        // Animação aleatória
+        const duration = 15 + Math.random() * 10; // 15s a 25s
+        const delay = Math.random() * 5; // 0s a 5s
+        
+        morcego.style.animation = `voarAleatorio ${duration}s linear infinite ${delay}s`;
+        
+        body.appendChild(morcego);
+      }
+    }
+    
+    // Definir a animação de voo aleatório
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes voarAleatorio {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+          opacity: 0.6;
+        }
+        25% {
+          transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 20 - 10}deg);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 20 - 10}deg);
+          opacity: 0.7;
+        }
+        75% {
+          transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 20 - 10}deg);
+          opacity: 0.9;
+        }
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+          opacity: 0.6;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Criar os morcegos quando a página carregar
+    window.addEventListener('load', criarMorcegosFundo);
+  </script>
 
 </body>
 </html>
